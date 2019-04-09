@@ -32,7 +32,8 @@ SOURCES += main.cpp\
     coupler.cpp \
     sidelink.cpp \
     graphwidget.cpp \
-    anchordialog.cpp
+    anchordialog.cpp \
+    globalcoordinate.cpp
 
 HEADERS  += mainwindow.h \
     graphicsview.h \
@@ -42,7 +43,8 @@ HEADERS  += mainwindow.h \
     coupler.h \
     sidelink.h \
     graphwidget.h \
-    anchordialog.h
+    anchordialog.h \
+    globalcoordinate.h
 
 FORMS    += mainwindow.ui \
     anchordialog.ui

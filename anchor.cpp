@@ -14,6 +14,7 @@ Anchor::Anchor(const QPointF &point1, const QPointF &point2)
     setFlag(ItemSendsGeometryChanges);
     setFlag(ItemIsSelectable);
     setPos(posInScene);
+    posInScene.setY(-posInScene.y());
 
     setAcceptHoverEvents(true);
 }

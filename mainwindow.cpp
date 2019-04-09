@@ -9,7 +9,7 @@
 #include "anchor.h"
 #include "connector.h"
 #include "sidelink.h"
-
+#include "globalcoordinate.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -50,6 +50,9 @@ MainWindow::MainWindow(QWidget *parent) :
     scene->addItem(connect1);
     scene->addItem(connect2);
     scene->addItem(coupler);
+
+    GlobalCoordinate *globalCoordinate = new GlobalCoordinate;
+    scene->addItem(globalCoordinate);
 
     View->setScene(scene);
 
