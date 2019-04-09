@@ -37,8 +37,6 @@ void Coupler::adjust()
 
     prepareGeometryChange();
 
-    update();
-
 }
 
 
