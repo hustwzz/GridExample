@@ -5,6 +5,7 @@
 #include "graphicsview.h"
 #include <QGraphicsScene>
 #include <QGraphicsItemGroup>
+#include <QDockWidget>
 #include <QTimer>
 
 namespace Ui {
@@ -18,7 +19,10 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void addGrid();
+
+    void createDockWidgets();
+
+    void viewShowGrid(bool isGridShow);
 
 private slots:
     void on_action_2_triggered();
@@ -33,8 +37,10 @@ private:
     Ui::MainWindow *ui;
     GraphicsView *View;
     QGraphicsScene *scene;
-    QGraphicsItemGroup *group;
+    QGraphicsItemGroup *gridGroup;
     QTimer *m_animation_timer;
+    QDockWidget *plotWidget;
+    int gridSize;
 };
 
 #endif // MAINWINDOW_H

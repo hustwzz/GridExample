@@ -36,7 +36,6 @@ void Coupler::adjust()
     endPos = mapFromItem(endConnector,0,0);
 
     prepareGeometryChange();
-
 }
 
 

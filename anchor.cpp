@@ -7,8 +7,8 @@
 
 #define PI 3.1415926
 
-Anchor::Anchor(GraphWidget *graphWidget, const QPointF &point1, const QPointF &point2)
-    :graph(graphWidget),posInScene(point1),anchorPosition(point2),link(nullptr)
+Anchor::Anchor(const QPointF &point1, const QPointF &point2)
+    :posInScene(point1),anchorPosition(point2),link(nullptr),isFixed(false),anchorAngle(0)
 {
     setFlag(ItemIsMovable);
     setFlag(ItemSendsGeometryChanges);
@@ -58,9 +58,28 @@ void Anchor::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
 
 }
 
+void Anchor::setAnchorAngle(qreal angle)
+{
+    anchorAngle = angle;
+    setRotation(angle);
+}
+
+void Anchor::setPosInScene(QPointF point)
+{
+    posInScene.setX(point.x());
+    posInScene.setY(-point.y());
+    setPos(point);
+}
+
+void Anchor::setIsFixedOrUnFixed(bool isFixedOrNot)
+{
+    isFixed = isFixedOrNot;
+}
+
 void Anchor::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
-    posInScene = mapToScene(event->pos());
+    posInScene.setX(mapToScene(event->pos()).x());
+    posInScene.setY(-mapToScene(event->pos()).y());
     QGraphicsItem::mouseMoveEvent(event);
 }
 
@@ -68,7 +87,9 @@ void Anchor::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
 {
     if(event->button() == Qt::LeftButton)
     {
-        AnchorDialog anchorDialog;
+        AnchorDialog anchorDialog(this);
+        connect(&anchorDialog,SIGNAL(changeAnchorAngle(qreal)),this,SLOT(setAnchorAngle(qreal)));
+        connect(&anchorDialog,SIGNAL(changePosInScene(QPointF)),this,SLOT(setPosInScene(QPointF)));
         anchorDialog.exec();
     }
     QGraphicsItem::mouseDoubleClickEvent(event);

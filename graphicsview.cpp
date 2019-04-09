@@ -57,7 +57,7 @@ void GraphicsView::wheelEvent(QWheelEvent *event)
 void GraphicsView::scaleView(qreal scaleFactor)
 {
     qreal factor = transform().scale(scaleFactor,scaleFactor).mapRect(QRect(0,0,1,1)).width();
-    if(factor < 0.6 || factor > 10)
+    if(factor < 0.6 || factor > 5)
         return;
     scale(scaleFactor,scaleFactor);
 }
